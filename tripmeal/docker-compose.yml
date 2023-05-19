@@ -1,0 +1,26 @@
+version: "3"
+services:
+  web:
+    build: web
+    image: fernandosantcs/tm-web
+    networks:
+      - backend
+    ports:
+      - 5000
+    env_file:
+      - tripmeal.env
+  db:
+    build: database
+    image: fernandosantcs/tm-db
+    networks:
+      - backend
+    volumes:
+      - tripmeal-data:/var/lib/mysql
+    env_file:
+      - tripmeal.env
+
+networks:
+  backend:
+
+volumes:
+  tripmeal-data:
